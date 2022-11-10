@@ -15,14 +15,14 @@ class BasicDateField extends StatelessWidget {
       decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
       format: format,
       onChanged: (dateTime) {
-        fechaActual = dateTime;
+        fechaActual = dateTime!;
       },
       initialValue: fechaActual,
       onShowPicker: (context, fechaActual) {
         return showDatePicker(
             context: context,
             firstDate: DateTime(1900, 1, 1),
-            initialDate: fechaActual,
+            initialDate: fechaActual!,
             lastDate: DateTime.now());
       },
     );

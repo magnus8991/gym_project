@@ -35,7 +35,9 @@ class RadialButton extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: AppColors.whiteGrey
+              color: AppColors.whiteGrey,
+              fontSize: 20,
+              fontWeight: FontWeight.w800
             ),
           )
         ),
