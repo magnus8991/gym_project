@@ -13,6 +13,7 @@ import '../../../widgets/Inputs.dart';
 import '../../../widgets/button.dart';
 import '../../../widgets/dialog.dart';
 
+
 class LoginForm extends StatelessWidget {
   final GlobalWidgetDialog globalDialog = GlobalWidgetDialog();
   final TextEditingController passwordController = TextEditingController();
@@ -33,8 +34,19 @@ class LoginForm extends StatelessWidget {
       globalDialog.seeDialogInfo(context, "usuario registrado con éxito");
     }
 
-    void login() {
-      AppNavigator.push(Routes.home);
+    void login(){
+      if(passwordController.text.isEmpty && userNameController.text.isEmpty){
+        globalDialog.seeDialogError(context, 'Por favor llene todos los campos');
+      }
+      if(passwordController.text.isNotEmpty && userNameController.text.isNotEmpty){
+        int exist = users.indexWhere((user) => user.password == passwordController.text && user.userName == userNameController.text);
+        if(exist == -1){
+          globalDialog.seeDialogError(context, 'No existe el usuario');
+        }
+        else{
+          AppNavigator.push(Routes.home);
+        }
+      }
     }
 
     var isDark = themeCubit.isDark;
@@ -79,9 +91,7 @@ class LoginForm extends StatelessWidget {
                         right: 28,
                       ),
                       icon: Icon(
-                        isDark
-                            ? Icons.wb_sunny_outlined
-                            : Icons.dark_mode_outlined,
+                        isDark ? Icons.wb_sunny_outlined : Icons.dark_mode_outlined,
                         color: isDark ? Colors.yellow : Colors.black,
                         size: 25,
                       )),
@@ -131,6 +141,7 @@ class LoginForm extends StatelessWidget {
 }
 
 class LoginDetail extends StatelessWidget {
+
   final Function registerUser;
 
   const LoginDetail({
