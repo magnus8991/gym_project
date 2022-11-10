@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym/configs/images.dart';
-import 'package:gym/ui/screens/login/sections/register_form.dart';
+import 'package:gym/ui/screens/users/sections/register_form.dart';
 import 'package:gym/ui/widgets/app_background.dart';
 
 import '../../../../configs/colors.dart';
@@ -60,7 +60,7 @@ class LoginForm extends StatelessWidget {
             children: <Widget>[
               SafeArea(
                 child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.topRight,
                   child: IconButton(
                       onPressed: () {
                         themeCubit.toggleTheme();

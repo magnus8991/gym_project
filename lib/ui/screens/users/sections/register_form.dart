@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym/ui/widgets/Inputs.dart';
 import 'package:gym/ui/widgets/app_background.dart';
 import 'package:gym/ui/widgets/button.dart';
+import 'package:gym/ui/widgets/controlfecha.dart';
 
 import '../../../../domain/entities/user.dart';
 import '../../../widgets/dialog.dart';
@@ -9,17 +10,13 @@ import '../../../widgets/dialog.dart';
 class RegisterScreen extends StatefulWidget {
   final User user;
 
-  const RegisterScreen({
-    super.key,
-    required this.user
-  });
+  const RegisterScreen({super.key, required this.user});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-
   final GlobalWidgetDialog globalDialog = GlobalWidgetDialog();
 
   final TextEditingController nameController = TextEditingController();
@@ -30,7 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final TextEditingController userNameController = TextEditingController();
 
-  void createUser(){
+  BasicDateField basicDateField = BasicDateField(DateTime.now());
+
+  void createUser() {
     if (nameController.text.isNotEmpty &&
         surnameController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&
@@ -51,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Center(
-          child: Text('Registro de persona'),
+          child: Text('Crea tu cuenta'),
         ),
       ),
       body: AppBackground(
@@ -63,14 +62,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: nameController,
                 color: Colors.white,
                 icon: Icons.supervised_user_circle,
-                label: "Primer y Segundo Nombre",
+                label: "Identificación",
+                obscureText: false,
+              ),
+              RadialInput(
+                controller: nameController,
+                color: Colors.white,
+                icon: Icons.supervised_user_circle,
+                label: "Nombre(s)",
                 obscureText: false,
               ),
               RadialInput(
                 controller: surnameController,
                 color: Colors.white,
                 icon: Icons.lock,
-                label: "Primer y Segundo Apellido",
+                label: "Apellido(s)",
+                obscureText: false,
+              ),
+              basicDateField,
+              RadialInput(
+                controller: surnameController,
+                color: Colors.white,
+                icon: Icons.lock,
+                label: "Apellido(s)",
                 obscureText: false,
               ),
               RadialInput(
@@ -91,8 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: Colors.black,
                   text: "Registrar",
                   press: createUser,
-                  textColor: Colors.white
-              ),
+                  textColor: Colors.white),
             ],
           ),
         ),
