@@ -40,12 +40,12 @@ class LoginForm extends StatelessWidget {
       }
       if(passwordController.text.isNotEmpty && userNameController.text.isNotEmpty){
         int exist = users.indexWhere((user) => user.password == passwordController.text && user.userName == userNameController.text);
-        if(exist == -1){
+        /*if(exist == -1){
           globalDialog.seeDialogError(context, 'No existe el usuario');
         }
-        else{
+        else{*/
           AppNavigator.push(Routes.home);
-        }
+        //}
       }
     }
 

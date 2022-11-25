@@ -48,10 +48,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       widget.user.userName = userNameController.text;
       widget.user.password = passwordController.text;
       widget.user.gym = Gym();
-      widget.user.gym.name = nameGymController.text;
-      widget.user.gym.address = addressController.text;
-      widget.user.gym.phoneNumber = phoneNumberController.text;
-      widget.user.gym.email = emailGymController.text;
+      widget.user.gym!.name = nameGymController.text;
+      widget.user.gym!.address = addressController.text;
+      widget.user.gym!.phoneNumber = phoneNumberController.text;
+      widget.user.gym!.email = emailGymController.text;
       Navigator.pop(context, {widget.user});
     } else {
       globalDialog.seeDialog(context, "Debe diligenciar todos los campos");
