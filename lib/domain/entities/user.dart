@@ -5,6 +5,7 @@ class User {
   String? name;
   String? surname;
   String? email;
+class LogInUser {
   String? userName;
   String? password;
   Gym? gym;
@@ -18,4 +19,11 @@ class User {
     this.password,
     this.gym
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'userName': userName,
+      'password': password
+    };
+  }
 }
