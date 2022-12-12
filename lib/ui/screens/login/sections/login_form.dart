@@ -109,6 +109,9 @@ class LoginForm extends StatelessWidget {
                 icon: Icons.supervised_user_circle,
                 label: "Nombre de Usuario",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: passwordController,
@@ -118,6 +121,9 @@ class LoginForm extends StatelessWidget {
                 icon: Icons.lock,
                 label: "Contraseña",
                 obscureText: true,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialButton(
                   color: !isDark

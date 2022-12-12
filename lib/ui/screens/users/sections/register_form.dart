@@ -19,7 +19,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalWidgetDialog globalDialog = GlobalWidgetDialog();
-  final TextEditingController identificationController = TextEditingController();
+  final TextEditingController identificationController =
+      TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController emailUserController = TextEditingController();
@@ -63,22 +64,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('Crea tu cuenta', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),),
+        title: const Text(
+          'Crea tu cuenta',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+        ),
       ),
       body: AppBackground(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(padding: EdgeInsets.all(30), child: Text(
-                "Datos del propietario",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 25))),
+              Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Text("Datos del propietario",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 25))),
               RadialInput(
                 controller: identificationController,
                 color: Colors.white,
                 icon: FontAwesomeIcons.idCard,
                 label: "Identificación",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: nameController,
@@ -86,6 +97,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.drive_file_rename_outline,
                 label: "Nombre(s)",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: surnameController,
@@ -93,6 +107,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.drive_file_rename_outline,
                 label: "Apellido(s)",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: emailUserController,
@@ -100,6 +117,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.markunread,
                 label: "Correo electrónico",
                 obscureText: false,
+                validator: (value) {
+                  String pattern =
+                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                  RegExp regExp = new RegExp(pattern);
+                  return regExp.hasMatch(value ?? '')
+                      ? value!.isNotEmpty
+                          ? null
+                          : 'Debe ingresar un valor'
+                      : 'Debe ingresar un correo válido';
+                },
               ),
               RadialInput(
                 controller: userNameController,
@@ -107,6 +134,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: FontAwesomeIcons.circleUser,
                 label: "Nombre de Usuario",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: passwordController,
@@ -114,15 +144,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.lock,
                 label: "Contraseña",
                 obscureText: true,
-              ),Padding(padding: EdgeInsets.all(20), child: Text(
-                  "Datos del gimnasio",
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 25))),
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
+              ),
+              Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text("Datos del gimnasio",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 25))),
               RadialInput(
                 controller: nameGymController,
                 color: Colors.white,
                 icon: Icons.sports_martial_arts,
                 label: "Nombre del gimnasio",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: addressController,
@@ -130,6 +171,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.location_city,
                 label: "Dirección",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: phoneNumberController,
@@ -137,6 +181,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.phone,
                 label: "Teléfono",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialInput(
                 controller: emailGymController,
@@ -144,6 +191,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 icon: Icons.markunread,
                 label: "Correo electrónico",
                 obscureText: false,
+                validator: (value) {
+                  return value!.isNotEmpty ? null : 'Debe ingresar un valor';
+                },
               ),
               RadialButton(
                   color: Colors.black,

@@ -89,6 +89,7 @@ class RadialInput extends StatelessWidget {
   final Color color;
   final IconData icon;
   final bool obscureText;
+  final String? Function(String?)? validator;
   const RadialInput({
     Key? key,
     required this.controller,
@@ -96,6 +97,7 @@ class RadialInput extends StatelessWidget {
     required this.color,
     required this.icon,
     required this.obscureText,
+    required this.validator
   }) : super(key: key);
 
   @override
@@ -131,6 +133,7 @@ class RadialInput extends StatelessWidget {
                 controller.clear();
               },
             )),
+        validator: validator,
       ),
     );
   }
